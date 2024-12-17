@@ -5,7 +5,6 @@ def mask_account_card(data: str) -> str:
     """
     Обрабатывает строку с типом и номером карты или счета и возвращает замаскированный номер.
     """
-    # Разделяем строку на тип и номер
     words = data.split()
     card_or_account_type = words[0]
     account_or_card_number = words[-1]
