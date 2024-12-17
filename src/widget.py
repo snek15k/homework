@@ -18,3 +18,17 @@ def mask_account_card(data: str) -> str:
     else:
         masked_card = get_mask_card_number(account_or_card_number)
         return f"{card_or_account_type} {masked_card}"
+
+
+def get_date(date_string: str) -> str:
+    """Функция преобразует строку формата 'ГГГГ-ММ-ДДTчч:мм:сс' в 'ДД.ММ.ГГГГ'"""
+    # Разбиваем строку на две части: дата и время
+    date_part = date_string.split("T")[0]  # Берем первую часть до символа 'T'
+
+    # Разбиваем дату на год, месяц и день
+    year, month, day = date_part.split("-")
+
+    # Собираем дату в нужном формате
+    formatted_date = f"{day}.{month}.{year}"
+
+    return formatted_date
