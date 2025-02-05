@@ -6,24 +6,24 @@ from src.widget import get_date, mask_account_card
 
 class TestMaskingFunctions(unittest.TestCase):
 
-    @patch('src.widget.get_mask_account')
+    @patch("src.widget.get_mask_account", return_value="************3456")
     def test_mask_account_card_valid_account(self, mock_get_mask_account):
         """Проверка маскировки номера счета с корректным номером"""
-        mock_get_mask_account.return_value = "************3456"
         result = mask_account_card("Счет 1234567890123456")
         self.assertEqual(result, "Счет ************3456")
+        mock_get_mask_account.assert_called_once_with("1234567890123456")
 
     def test_mask_account_card_invalid_account(self):
         """Проверка маскировки номера счета с некорректным номером"""
         result = mask_account_card("Счет 123")
         self.assertEqual(result, "Счет 123 (Некорректный номер счета)")
 
-    @patch('src.widget.get_mask_card_number')
+    @patch("src.widget.get_mask_card_number", return_value="**** **** **** 3456")
     def test_mask_account_card_valid_card(self, mock_get_mask_card_number):
         """Проверка маскировки номера карты с корректным номером"""
-        mock_get_mask_card_number.return_value = "**** **** **** 3456"
         result = mask_account_card("Visa 1234567890123456")
         self.assertEqual(result, "Visa **** **** **** 3456")
+        mock_get_mask_card_number.assert_called_once_with("1234567890123456")
 
     def test_mask_account_card_invalid_card(self):
         """Проверка маскировки номера карты с некорректным номером"""

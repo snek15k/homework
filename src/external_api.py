@@ -24,17 +24,13 @@ def convert_to_rub(amount: float, from_currency: str) -> float:
 
     # Формируем запрос к API для получения курса
     headers = {"apikey": API_KEY}
-    params = {
-        "from": from_currency,
-        "to": "RUB",
-        "amount": str(amount)  # Убедимся, что amount передается как строка
-    }
+    params = {"from": from_currency, "to": "RUB", "amount": str(amount)}  # Убедимся, что amount передается как строка
 
     # Отправляем запрос и обрабатываем ответ
     response = requests.get(BASE_URL, headers=headers, params=params)
     if response.status_code == 200:
         result = response.json()
-        return float(result.get('result', 0.0))  # Преобразуем результат в float
+        return float(result.get("result", 0.0))  # Преобразуем результат в float
     else:
         raise Exception(f"Error while fetching exchange rates: {response.status_code}")
 
@@ -46,8 +42,8 @@ def get_transaction_amount(transaction: Dict[str, float]) -> float:
     :param transaction: словарь с данными транзакции (amount, currency)
     :return: сумма в рублях
     """
-    amount = transaction['amount']
-    currency = transaction['currency']
+    amount = transaction["amount"]
+    currency = transaction["currency"]
 
     # Если валюта уже рубли, возвращаем сумму как есть
     if currency == "RUB":

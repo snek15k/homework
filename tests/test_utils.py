@@ -21,7 +21,7 @@ class TestLoadTransactions(unittest.TestCase):
         self.assertEqual(result, [])
 
     @patch("os.path.exists", return_value=True)
-    @patch("builtins.open", new_callable=mock_open, read_data='{}')
+    @patch("builtins.open", new_callable=mock_open, read_data="{}")
     def test_load_transactions_invalid_json_structure(
         self, mock_file: unittest.mock.MagicMock, mock_exists: unittest.mock.MagicMock
     ) -> None:
@@ -29,7 +29,7 @@ class TestLoadTransactions(unittest.TestCase):
         self.assertEqual(result, [])
 
     @patch("os.path.exists", return_value=True)
-    @patch("builtins.open", new_callable=mock_open, read_data='invalid json')
+    @patch("builtins.open", new_callable=mock_open, read_data="invalid json")
     def test_load_transactions_json_decode_error(
         self, mock_file: unittest.mock.MagicMock, mock_exists: unittest.mock.MagicMock
     ) -> None:

@@ -6,6 +6,7 @@ def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callab
     """
     Декоратор для логирования выполнения функции.
     """
+
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             start_time = datetime.datetime.now()
@@ -15,8 +16,7 @@ def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callab
                 result = func(*args, **kwargs)
                 end_time = datetime.datetime.now()
                 log_message += (
-                    f"{end_time} - Успешное завершение функции '{func.__name__}' "
-                    f"с результатом: {result}.\n"
+                    f"{end_time} - Успешное завершение функции '{func.__name__}' " f"с результатом: {result}.\n"
                 )
                 if filename:
                     with open(filename, "a") as log_file:
@@ -36,5 +36,7 @@ def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callab
                 else:
                     print(log_message)
                 raise
+
         return wrapper
+
     return decorator

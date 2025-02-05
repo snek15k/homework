@@ -11,9 +11,9 @@ def test_data() -> List[Dict[str, Union[str, int]]]:
     Предоставляет тестовые данные для тестов.
     """
     return [
-        {'id': 1, 'state': 'EXECUTED', 'date': '2024-12-27T10:00:00.000000'},
-        {'id': 2, 'state': 'CANCELED', 'date': '2024-12-25T10:00:00.000000'},
-        {'id': 3, 'state': 'EXECUTED', 'date': '2024-12-26T10:00:00.000000'},
+        {"id": 1, "state": "EXECUTED", "date": "2024-12-27T10:00:00.000000"},
+        {"id": 2, "state": "CANCELED", "date": "2024-12-25T10:00:00.000000"},
+        {"id": 3, "state": "EXECUTED", "date": "2024-12-26T10:00:00.000000"},
     ]
 
 
@@ -49,8 +49,8 @@ def test_sort_by_date_desc(test_data: List[Dict[str, str]]) -> None:
     Тестирует сортировку по убыванию дат.
     """
     result = sort_by_date(test_data)
-    assert result[0]["date"] == '2024-12-27T10:00:00.000000'  # Самая поздняя дата
-    assert result[-1]["date"] == '2024-12-25T10:00:00.000000'  # Самая ранняя дата
+    assert result[0]["date"] == "2024-12-27T10:00:00.000000"  # Самая поздняя дата
+    assert result[-1]["date"] == "2024-12-25T10:00:00.000000"  # Самая ранняя дата
 
 
 def test_sort_by_date_asc(test_data: List[Dict[str, str]]) -> None:
@@ -58,8 +58,8 @@ def test_sort_by_date_asc(test_data: List[Dict[str, str]]) -> None:
     Тестирует сортировку по возрастанию дат.
     """
     result = sort_by_date(test_data, descending=False)
-    assert result[0]["date"] == '2024-12-25T10:00:00.000000'  # Самая ранняя дата
-    assert result[-1]["date"] == '2024-12-27T10:00:00.000000'  # Самая поздняя дата
+    assert result[0]["date"] == "2024-12-25T10:00:00.000000"  # Самая ранняя дата
+    assert result[-1]["date"] == "2024-12-27T10:00:00.000000"  # Самая поздняя дата
 
 
 def test_sort_by_date_empty() -> None:
